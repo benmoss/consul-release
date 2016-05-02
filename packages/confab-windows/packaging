@@ -1,0 +1,17 @@
+$env:GOROOT="C:\var\vcap\packages\golang1.6-windows"
+$env:GOPATH=$env:BOSH_INSTALL_TARGET
+$env:PATH="${env:GOROOT}\bin;${env:PATH}"
+$env:GO15VENDOREXPERIMENT=1
+
+echo "--------------"
+echo $env:BOSH_INSTALL_TARGET
+echo "--------------"
+pwd
+echo "--------------"
+
+Start-Sleep -s 300000
+
+mkdir "${env:BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src"
+robocopy /E confab "${env:BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src\confab"
+
+go install "github.com/cloudfoundry-incubator/consul-release/src/confab/confab"

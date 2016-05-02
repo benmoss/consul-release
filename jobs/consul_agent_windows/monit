@@ -2,9 +2,8 @@
   "processes": [
     {
       "name": "consul",
-      "executable": "C:\\var\\vcap\\packages\\consul-windows\\consul.exe",
-      "args": [ "agent", "-config-dir=/var/vcap/jobs/consul_agent_windows/config" ]
+      "executable": "C:\\var\\vcap\\packages\\confab-windows\\confab.exe",
+      "args": [ "start", "", "-config-file /var/vcap/jobs/consul_agent_windows/confab.json" ]
     }
   ]
 }
-

@@ -6,4 +6,4 @@ function Unzip
     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
 }
 
-Unzip "consul-windows/consul_0.5.2_windows_386.zip" $Env:BOSH_INSTALL_TARGET
+Unzip "golang/go1.6.2.windows-amd64.zip" ${env:BOSH_INSTALL_TARGET}
