@@ -4,12 +4,17 @@ templates:
   agent.crt.erb: config/certs/agent.crt
   agent.key.erb: config/certs/agent.key
   ca.crt.erb: config/certs/ca.crt
-  config.json.erb: config/config.json
+  confab.json.erb: confab.json
 
 packages:
 - consul-windows
+- confab-windows
 
 properties:
+  consul.agent.mode:
+    description: "Mode to run the agent in. (client or server)"
+    default: client
+
   consul.agent.servers.lan:
     description: "LAN server addresses to join on start."
     default: []
@@ -34,12 +39,17 @@ properties:
     description: "The Consul protocol to use."
     default: 2
 
-  consul.require_ssl:
-    description: "enable ssl for all communication with consul"
-    default: true
+  consul.agent.domain:
+    description: "Domain suffix for DNS"
 
   consul.ca_cert:
     description: "PEM-encoded CA certificate"
+
+  consul.server_cert:
+    description: "PEM-encoded server certificate"
+
+  consul.server_key:
+    description: "PEM-encoded server key"
 
   consul.agent_cert:
     description: "PEM-encoded agent certificate"
