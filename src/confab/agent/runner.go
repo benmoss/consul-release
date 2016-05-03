@@ -25,6 +25,24 @@ type Runner struct {
 	cmd       *exec.Cmd
 }
 
+func isRunningProcess(pidFilePath string) bool {
+	pidFileContents, err := ioutil.ReadFile(pidFilePath)
+	if err != nil {
+		return false
+	}
+
+	pid, err := strconv.Atoi(string(pidFileContents))
+	if err != nil {
+		return false
+	}
+
+	proc, err := os.FindProcess(pid)
+	if err != nil {
+		return false
+	}
+	return signalProcess(proc) == nil
+}
+
 func (r *Runner) Run() error {
 	if _, err := os.Stat(r.ConfigDir); os.IsNotExist(err) {
 		err := fmt.Errorf("config dir does not exist: %s", r.ConfigDir)
