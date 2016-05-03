@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 	"time"
 
 	"github.com/cloudfoundry-incubator/consul-release/src/confab"
@@ -145,6 +146,13 @@ func main() {
 			stderr.Printf("error during start: %s", err)
 			r.Stop()
 			os.Exit(1)
+		}
+		if runtime.GOOS == "windows" {
+			if err := agentRunner.Wait(); err != nil {
+				stderr.Printf("error during wait: %s", err)
+				r.Stop()
+				os.Exit(1)
+			}
 		}
 	case "stop":
 		if err := r.Stop(); err != nil {
