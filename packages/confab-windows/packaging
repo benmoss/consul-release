@@ -1,17 +1,19 @@
-$env:GOROOT="C:\var\vcap\packages\golang1.6-windows"
-$env:GOPATH=$env:BOSH_INSTALL_TARGET
+$BOSH_INSTALL_TARGET = Resolve-Path $env:BOSH_INSTALL_TARGET
+
+$env:GOROOT="C:\var\vcap\packages\golang1.6-windows\go"
+$env:GOPATH=$BOSH_INSTALL_TARGET
 $env:PATH="${env:GOROOT}\bin;${env:PATH}"
 $env:GO15VENDOREXPERIMENT=1
 
-echo "--------------"
-echo $env:BOSH_INSTALL_TARGET
-echo "--------------"
-pwd
-echo "--------------"
-
-Start-Sleep -s 300000
-
-mkdir "${env:BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src"
-robocopy /E confab "${env:BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src\confab"
+mkdir "${BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src"
+robocopy /E confab "${BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src\confab"
 
 go install "github.com/cloudfoundry-incubator/consul-release/src/confab/confab"
+
+mkdir emptyfolder
+robocopy emptyfolder ${BOSH_INSTALL_TARGET}/src /PURGE
+robocopy emptyfolder ${BOSH_INSTALL_TARGET}/pkg /PURGE
+rmdir ${BOSH_INSTALL_TARGET}/src
+rmdir ${BOSH_INSTALL_TARGET}/pkg
+rmdir emptyfolder
+
