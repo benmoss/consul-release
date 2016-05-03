@@ -6,4 +6,5 @@ function Unzip
     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
 }
 
-Unzip "consul-windows/consul_0.5.2_windows_386.zip" $Env:BOSH_INSTALL_TARGET
+mkdir ${env:BOSH_INSTALL_TARGET}/bin
+Unzip "consul-windows/consul_0.5.2_windows_386.zip" $Env:BOSH_INSTALL_TARGET/bin
