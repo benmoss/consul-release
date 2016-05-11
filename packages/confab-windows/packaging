@@ -20,7 +20,7 @@ try {
     New-Item -ItemType "directory" -Force "${BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src"
     robocopy /E confab "${BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src\confab"
 
-    if (-Not CompileGo) {
+    if (-Not (CompileGo)) {
         $Host.UI.WriteErrorLine("Error compiling: ${pkg_path}")
         Exit 1
     }
