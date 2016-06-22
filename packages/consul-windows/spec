@@ -4,4 +4,4 @@ name: consul-windows
 dependencies:
 
 files:
-- consul-windows/consul_0.5.2_windows_386.zip
+- consul-windows/consul_0.6.4_windows_386.zip
