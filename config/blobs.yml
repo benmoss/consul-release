@@ -11,3 +11,11 @@ consul/consul_0.6.4_linux_amd64.zip:
   object_id: de9ee191-b088-4cef-8c02-e68d4d16eb29
   sha: 85de555de27cae126f0f89e762f6136e1c7104b6
   size: 6206903
+consul-windows/consul_0.6.4_windows_386.zip:
+  object_id: f3aab0dd-c0da-4c06-bc80-b7607213823d
+  sha: df7f30549f8a426afffc16cb2e9af862800e086a
+  size: 5773550
+golang/go1.6.2.windows-amd64.zip:
+  object_id: f2a0effc-5e92-4090-b620-9a5827d1ef6a
+  sha: 9fc1628ce5e4f4fc65817fa938fa5f95b99612e1
+  size: 91785149
