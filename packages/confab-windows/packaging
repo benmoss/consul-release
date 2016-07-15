@@ -19,6 +19,9 @@ function CompileGo {
 try {
     New-Item -ItemType "directory" -Force "${BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src"
     robocopy /E confab "${BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry-incubator\consul-release\src\confab"
+    if ($LASTEXITCODE -ge 8) {
+        Exit 1
+    }
 
     if (-Not (CompileGo)) {
         $Host.UI.WriteErrorLine("Error compiling: ${pkg_path}")
@@ -27,7 +30,13 @@ try {
 
     New-Item -ItemType "directory" -Force "emptyfolder"
     robocopy /PURGE "emptyfolder" "${BOSH_INSTALL_TARGET}/src"
+    if ($LASTEXITCODE -ge 8) {
+        Exit 1
+    }
     robocopy /PURGE "emptyfolder" "${BOSH_INSTALL_TARGET}/pkg"
+    if ($LASTEXITCODE -ge 8) {
+        Exit 1
+    }
 
     Remove-Item -Force -Recurse "${BOSH_INSTALL_TARGET}/src"
     Remove-Item -Force -Recurse "${BOSH_INSTALL_TARGET}/pkg"
